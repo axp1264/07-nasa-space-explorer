@@ -27,4 +27,4 @@ function setupDateInputs(startInput, endInput) {
     endDate.setDate(startDate.getDate() + 8);
     endInput.value = endDate > new Date(today) ? today : endDate.toISOString().split('T')[0];
   });
-}
+} 
