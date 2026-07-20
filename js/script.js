@@ -13,7 +13,7 @@ const modalExplanation = document.getElementById('modalExplanation');
 const closeModal = document.getElementById('closeModal');
 const spaceFact = document.getElementById('spaceFact');
 
-const PROXY_URL = 'https://nasa-apod-proxy.<your-subdomain>.workers.dev';
+const PROXY_URL = 'https://nasa-apod-proxy.khoiaccclone2.workers.dev';
 
 fetchBtn.addEventListener('click', async () => {
   const startDate = startInput.value;
@@ -31,7 +31,7 @@ fetchBtn.addEventListener('click', async () => {
     const data = await response.json();
     renderGallery(data);
   } catch (error) {
-    gallery.innerHTML = '<p class="error">⚠️ Unable to load space photos right now.</p>';
+    gallery.innerHTML = '<p class="error">Awaiting photos...</p>';
     console.error(error);
   }
 });
@@ -154,7 +154,7 @@ fetchBtn.addEventListener('click', async () => {
     const data = await response.json();
     renderGallery(data);
   } catch (error) {
-    gallery.innerHTML = '<p class="error">⚠️ Unable to load space photos right now.</p>';
+    gallery.innerHTML = '<p class="error">⚠️ Waiting for photos...</p>';
     console.error(error);
   }
 });
