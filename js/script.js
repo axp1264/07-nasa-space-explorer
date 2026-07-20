@@ -13,8 +13,29 @@ const modalExplanation = document.getElementById('modalExplanation');
 const closeModal = document.getElementById('closeModal');
 const spaceFact = document.getElementById('spaceFact');
 
-const BASE_URL = 'https://api.nasa.gov/planetary/apod';
-const API_KEY = 'NyYxodGt97iHTS9nRMwZB9DxnfySytLal7Q5xTMh';
+const PROXY_URL = 'https://nasa-apod-proxy.<your-subdomain>.workers.dev';
+
+fetchBtn.addEventListener('click', async () => {
+  const startDate = startInput.value;
+  const endDate = endInput.value;
+
+  gallery.innerHTML = '<p class="loading">🚀 Loading space photos...</p>';
+
+  try {
+    const response = await fetch(`${PROXY_URL}?start_date=${startDate}&end_date=${endDate}`);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch NASA APOD data');
+    }
+
+    const data = await response.json();
+    renderGallery(data);
+  } catch (error) {
+    gallery.innerHTML = '<p class="error">⚠️ Unable to load space photos right now.</p>';
+    console.error(error);
+  }
+});
+
 const spaceFacts = [
   'A day on Venus lasts longer than a year on Venus.',
   'Neutron stars are so dense that a teaspoon would weigh billions of tons.',
